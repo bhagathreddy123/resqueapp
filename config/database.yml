@@ -1,0 +1,25 @@
+
+#
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: resqueapp_development
+
+
+test:
+  <<: *default
+  database: resqueapp_test
+
+
+production:
+  <<: *default
+  database: resqueapp_production
+  username: resqueapp
+  password: <%= ENV['RESQUEAPP_DATABASE_PASSWORD'] %>

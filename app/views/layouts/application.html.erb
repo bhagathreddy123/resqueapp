@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resqueapp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+                     <ul class="nav nav-list">
+         <%if current_user%>
+                       <li><%= link_to "Email", current_user.email  %></li>
+
+              <li><%= link_to "SignOut", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to "Posts", posts_path  %></li>
+           <%else%>
+              <li><%= link_to "SignIn", new_user_session_path  %></li>
+              <%end%>
+            </ul>
+        <%= yield %>
+    <%= gflash %>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<legend><center> Posts List</center> </legend>
+
+<table class="table table-stripped">
+  <tr>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Action</th>
+  </tr>
+  <%@posts.each do |post|%>
+  <tr>
+    <td><%=post.name.titleize%></td>
+    <td><%=post.content.titleize%></td>
+    <td>
+     <%=link_to "Show",post_path(post),:class=>"btn btn-success"%>
+
+     <% if can? :update, @post %>
+     <%=link_to "Edit",edit_post_path(post),:class=>"btn btn-warning"%>
+<%end%>
+     <% if can? :delete, @post %>
+    <%=link_to "Delete",post_path(post),:method=>:delete,:data=>{:confirm=>"are u sure?"},:class=>"btn btn-danger"%>
+<%end%>
+   </td>
+ </tr>
+ <%end%>
+
+</table>
+
+<%= link_to "New Post", new_post_path %>
